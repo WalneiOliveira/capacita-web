@@ -1,0 +1,16 @@
+{
+  "cursos": [
+    { "id": 1, "nome": "HTML e CSS", "nivel": "básico", "horas": 20 },
+    { "id": 2, "nome": "JavaScript", "nivel": "básico", "horas": 30 },
+    { "id": 3, "nome": "Introdução ao Angular", "nivel": "intermediário", "horas": 40 }
+  ],
+  "alunos": [
+    {
+      "id": 1,
+      "nome": "Ana Souza",
+      "email": "ana.souza@escola.df.gov.br",
+      "cursoId": 1,
+      "horasAssistidas": 12
+    }
+  ]
+}
