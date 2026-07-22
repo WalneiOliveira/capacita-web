@@ -1,0 +1,33 @@
+$toolbar-bg: var(--mat-sys-primary);
+$toolbar-text: var(--mat-sys-on-primary);
+$toolbar-link-hover-bg: rgba(255, 255, 255, 0.1);
+$toolbar-link-active-bg: rgba(255, 255, 255, 0.2);
+
+:host {
+  --mat-toolbar-container-background-color: #{$toolbar-bg};
+  --mat-toolbar-container-text-color: #{$toolbar-text};
+}
+
+.spacer {
+  width: 3rem;
+}
+
+.toolbar-link {
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  font-size: 1.2rem;
+  margin-left: 1rem;
+  color: $toolbar-text;
+  transition: background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    background-color: $toolbar-link-hover-bg;
+  }
+
+  &.active {
+    background-color: $toolbar-link-active-bg;
+    border-bottom: 2px solid $toolbar-text;
+  }
+}
