@@ -12,5 +12,37 @@
       "cursoId": 1,
       "horasAssistidas": 12
     }
+  ],
+  "videos": [
+    {
+      "id": 1,
+      "cursoId": 1,
+      "titulo": "Curso de HTML",
+      "youtubeId": "SV7TL0hxmIQ"
+    },
+    {
+      "id": 2,
+      "cursoId": 1,
+      "titulo": "Curso de CSS",
+      "youtubeId": "ZkAeajAlfgM"
+    },
+    {
+      "id": 3,
+      "cursoId": 2,
+      "titulo": "Introdução ao JavaScript",
+      "youtubeId": "E1Ww5Y1EnWQ"
+    },
+    {
+      "id": 4,
+      "cursoId": 2,
+      "titulo": "Aprenda JavaScript",
+      "youtubeId": "MombnkR3oD4"
+    },
+    {
+      "id": 5,
+      "cursoId": 3,
+      "titulo": "Masterclass Angular 20",
+      "youtubeId": "_dh6dpaiTrY"
+    }
   ]
 }
