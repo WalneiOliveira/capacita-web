@@ -44,5 +44,23 @@
       "titulo": "Masterclass Angular 20",
       "youtubeId": "_dh6dpaiTrY"
     }
+  ],
+  "users": [
+    {
+      "id": "d57c14c2-622a-40ea-bb81-2d46338f848e",
+      "name": "Bruno Batista",
+      "email": "bruno@acme.com",
+      "password": "$2a$10$3IELqK2TJU004DE47CJzZOxG5C3kvDKRTm4lwZdzoyl.l6oJsU3Sa",
+      "isActive": true,
+      "role": "backoffice"
+    },
+    {
+      "email": "walnei@exemplo.com",
+      "password": "$2a$10$vJY075oe33o11JX0gJ9pfeQz/.c69puStdE65LBqSaVK.WAHSz/Y.",
+      "id": "dca60b2e-cf9d-429e-97ee-3704200df278",
+      "name": "walnei",
+      "isActive": true,
+      "role": "aluno"
+    }
   ]
 }
