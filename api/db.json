@@ -1,8 +1,23 @@
 {
   "cursos": [
-    { "id": 1, "nome": "HTML e CSS", "nivel": "básico", "horas": 20 },
-    { "id": 2, "nome": "JavaScript", "nivel": "básico", "horas": 30 },
-    { "id": 3, "nome": "Introdução ao Angular", "nivel": "intermediário", "horas": 40 }
+    {
+      "id": 1,
+      "nome": "HTML e CSS",
+      "nivel": "básico",
+      "horas": 20
+    },
+    {
+      "id": 2,
+      "nome": "JavaScript",
+      "nivel": "básico",
+      "horas": 30
+    },
+    {
+      "id": 3,
+      "nome": "Introdução ao Angular",
+      "nivel": "intermediário",
+      "horas": 40
+    }
   ],
   "alunos": [
     {
@@ -59,6 +74,14 @@
       "password": "$2a$10$vJY075oe33o11JX0gJ9pfeQz/.c69puStdE65LBqSaVK.WAHSz/Y.",
       "id": "dca60b2e-cf9d-429e-97ee-3704200df278",
       "name": "walnei",
+      "isActive": true,
+      "role": "aluno"
+    },
+    {
+      "id": "b156bcb9-5141-4018-bf82-3c8cb557136a",
+      "name": "Teste",
+      "email": "teste@escola.df.gov.br",
+      "password": "$2b$10$XoMl6o.qA8Em0AiPh2LVJetZUDP1..L5QDaYw5xttEu2py7UKLmpa",
       "isActive": true,
       "role": "aluno"
     }
