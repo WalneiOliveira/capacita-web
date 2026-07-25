@@ -6,18 +6,19 @@ import { MatInputModule } from '@angular/material/input';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 @Component({
-  selector: 'app-login',
+  selector: 'app-registro',
   standalone: true,
   imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, RouterLink],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.scss',
+  templateUrl: './registro.html',
+  styleUrl: './registro.scss',
 })
-export class LoginComponent {
+export class Registro {
   private router = inject(Router);
   private auth = inject(AuthService);
   protected mostrarErro = signal(false);
   protected enviando = signal(false);
-  protected loginForm = new FormGroup({
+  protected registroForm = new FormGroup({
+    name: new FormControl('', { nonNullable: true, validators: Validators.required }),
     email: new FormControl('', {
       nonNullable: true,
       validators: [Validators.required, Validators.email],
@@ -28,14 +29,14 @@ export class LoginComponent {
     }),
   });
   protected async onSubmit(): Promise<void> {
-    if (this.loginForm.invalid) {
-      this.loginForm.markAllAsTouched();
+    if (this.registroForm.invalid) {
+      this.registroForm.markAllAsTouched();
       return;
     }
     this.mostrarErro.set(false);
     this.enviando.set(true);
     try {
-      await this.auth.login(this.loginForm.getRawValue());
+      await this.auth.registrar(this.registroForm.getRawValue());
       this.router.navigate(['/']);
     } catch {
       this.mostrarErro.set(true);
