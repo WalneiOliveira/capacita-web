@@ -19,7 +19,7 @@
       "horas": 40
     }
   ],
-  "alunos": [
+  "matriculas": [
     {
       "id": 1,
       "nome": "Ana Souza",

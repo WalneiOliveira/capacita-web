@@ -96,7 +96,7 @@ function exigirLogin(req, res, next) {
   }
 }
 
-server.use(['/cursos', '/videos', '/alunos'], exigirLogin);
+server.use(['/cursos', '/videos', '/matriculas'], exigirLogin);
 server.use(router);
 
 server.listen(3000, () => {
