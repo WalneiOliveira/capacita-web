@@ -1,12 +1,8 @@
 export type Role = 'aluno' | 'backoffice';
-
-export class User {
-  constructor(
-    public id: string,
-    public name: string,
-    public email: string,
-    public password: string,
-    public isActive: boolean,
-    public role: Role,
-  ) {}
+export interface User {
+  id: string;
+  name: string;
+  email: string;
+  isActive: boolean;
+  role: Role;
 }

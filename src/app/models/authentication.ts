@@ -1,8 +1,5 @@
 import { User } from './user';
-
-export class Authentication {
-  constructor(
-    public accessToken: string,
-    public user: User,
-  ) {}
+export interface Authentication {
+  accessToken: string;
+  user: User;
 }

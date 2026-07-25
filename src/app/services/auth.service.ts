@@ -1,41 +1,45 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { Injectable, computed, inject, signal } from '@angular/core';
+import { firstValueFrom } from 'rxjs';
 import { Authentication } from '../models/authentication';
-import { catchError, Observable, tap, throwError } from 'rxjs';
-import { Credentials } from '../models/credentials';
-
-@Injectable({
-  providedIn: 'root',
-})
+import { Credentials, DadosRegistro } from '../models/credentials';
+import { User } from '../models/user';
+const CHAVE_TOKEN = 'capacita-web-token';
+const CHAVE_USUARIO = 'capacita-web-usuario';
+@Injectable({ providedIn: 'root' })
 export class AuthService {
   private readonly http = inject(HttpClient);
-
-  login(credentials: Credentials): Observable<Authentication> {
-    return this.http.post<Authentication>('http://localhost:3000/login', credentials).pipe(
-      tap((response) => {
-        if (response && response.accessToken) {
-          sessionStorage.setItem('token', response.accessToken);
-        }
-      }),
-      catchError(() => {
-        return throwError(() => new Error('Authentication failed.'));
-      }),
+  private readonly apiUrl = 'http://localhost:3000';
+  private tokenSignal = signal<string | null>(sessionStorage.getItem(CHAVE_TOKEN));
+  private usuarioSignal = signal<User | null>(
+    JSON.parse(sessionStorage.getItem(CHAVE_USUARIO) ?? 'null'),
+  );
+  token = this.tokenSignal.asReadonly();
+  usuario = this.usuarioSignal.asReadonly();
+  estaLogado = computed(() => this.tokenSignal() !== null);
+  ehBackoffice = computed(() => this.usuarioSignal()?.role === 'backoffice');
+  async login(credenciais: Credentials): Promise<void> {
+    const resposta = await firstValueFrom(
+      this.http.post<Authentication>(`${this.apiUrl}/login`, credenciais),
     );
+    this.salvarSessao(resposta);
   }
-
-  isAuthenticated(): boolean {
-    const token = sessionStorage.getItem('token');
-    if (!token) return false;
-    return true;
+  async registrar(dados: DadosRegistro): Promise<void> {
+    const resposta = await firstValueFrom(
+      this.http.post<Authentication>(`${this.apiUrl}/register`, dados),
+    );
+    this.salvarSessao(resposta);
   }
-
-  getToken(): string {
-    const token = sessionStorage.getItem('token');
-    if (!token) return '';
-    return token;
-  }
-
   logout(): void {
-    sessionStorage.removeItem('token');
+    sessionStorage.removeItem(CHAVE_TOKEN);
+    sessionStorage.removeItem(CHAVE_USUARIO);
+    this.tokenSignal.set(null);
+    this.usuarioSignal.set(null);
+  }
+  private salvarSessao(resposta: Authentication): void {
+    sessionStorage.setItem(CHAVE_TOKEN, resposta.accessToken);
+    sessionStorage.setItem(CHAVE_USUARIO, JSON.stringify(resposta.user));
+    this.tokenSignal.set(resposta.accessToken);
+    this.usuarioSignal.set(resposta.user);
   }
 }
