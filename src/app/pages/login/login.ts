@@ -9,10 +9,10 @@ import { AuthService } from '../../services/auth.service';
   selector: 'app-login',
   standalone: true,
   imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, RouterLink],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.scss',
+  templateUrl: './login.html',
+  styleUrl: './login.scss',
 })
-export class LoginComponent {
+export class Login {
   private router = inject(Router);
   private auth = inject(AuthService);
   protected mostrarErro = signal(false);

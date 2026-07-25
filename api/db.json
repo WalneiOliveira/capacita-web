@@ -84,6 +84,14 @@
       "password": "$2b$10$XoMl6o.qA8Em0AiPh2LVJetZUDP1..L5QDaYw5xttEu2py7UKLmpa",
       "isActive": true,
       "role": "aluno"
+    },
+    {
+      "id": "77ce5bc2-8f93-4a45-b85a-acbf4061823a",
+      "name": "Teste da Silva",
+      "email": "exemplo@exemplo.com",
+      "password": "$2b$10$dS2U6wH1.opqnDjydXsuRukiURqxdE7g9tKc8qxdIgp1CFZD7c6e.",
+      "isActive": true,
+      "role": "aluno"
     }
   ]
 }
