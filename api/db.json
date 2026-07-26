@@ -92,6 +92,14 @@
       "password": "$2b$10$dS2U6wH1.opqnDjydXsuRukiURqxdE7g9tKc8qxdIgp1CFZD7c6e.",
       "isActive": true,
       "role": "aluno"
+    },
+    {
+      "id": "50429fce-10ed-447d-8305-856a571c2c52",
+      "name": "novo",
+      "email": "novo@email.com",
+      "password": "$2b$10$sn5uLZWcwE5jkiOp/iRnPuDjJdNwolIuwyocIi/PbACLCpHVsxj/K",
+      "isActive": true,
+      "role": "aluno"
     }
   ]
 }

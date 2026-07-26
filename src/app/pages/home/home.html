@@ -1,10 +1,29 @@
 <div class="container">
-  <mat-toolbar>
-    <span>{{ title() }}</span> <span class="spacer"></span>
-    <a class="toolbar-link" routerLink="/alunos" routerLinkActive="active">Alunos</a>
-    <a class="toolbar-link" routerLink="/cursos" routerLinkActive="active">Cursos</a>
-    <a class="toolbar-link" routerLink="/backoffice" routerLinkActive="active">BackOffice</a>
-    <a class="toolbar-link" routerLink="/inscrever-se" routerLinkActive="active">Inscrever-se</a>
+  <mat-toolbar color="primary">
+    <span class="logo">🎓 {{ title() }}</span>
+    <span class="spacer"></span>
+
+    @if (!auth.ehBackoffice()) {
+      <a mat-button class="toolbar-link" routerLink="/cursos" routerLinkActive="active">Cursos</a>
+      <a mat-button class="toolbar-link" routerLink="/inscrever-se" routerLinkActive="active"
+        >Inscrever-se</a
+      >
+      <a mat-button class="toolbar-link" routerLink="/meus-cursos" routerLinkActive="active"
+        >Meus Cursos</a
+      >
+    }
+
+    @if (auth.ehBackoffice()) {
+      <a mat-button class="toolbar-link" routerLink="/matriculas" routerLinkActive="active"
+        >Alunos</a
+      >
+      <a mat-button class="toolbar-link" routerLink="/backoffice" routerLinkActive="active"
+        >BackOffice</a
+      >
+    }
+
+    <button mat-button class="toolbar-link" (click)="sair()">Sair</button>
   </mat-toolbar>
 </div>
+
 <router-outlet />

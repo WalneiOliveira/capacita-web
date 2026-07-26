@@ -1,12 +1,20 @@
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
+import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-home',
-  imports: [MatToolbarModule, RouterOutlet, RouterLink, RouterLinkActive],
+  imports: [MatToolbarModule, MatButtonModule, RouterOutlet, RouterLink, RouterLinkActive],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })
 export class Home {
   protected readonly title = signal('capacita-web');
+  protected auth = inject(AuthService);
+  private router = inject(Router);
+  protected sair(): void {
+    this.auth.logout();
+    this.router.navigate(['/login']);
+  }
 }

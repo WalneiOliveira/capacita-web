@@ -1,21 +1,19 @@
-<div class="form-container">
-  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-    <h2>Capacita Web — Entrar</h2>
-    @if (mostrarErro()) {
-      <h3>Endereço de e-mail ou senha inválidos, por favor tente novamente!</h3>
-    }
-    <mat-form-field appearance="outline">
-      <mat-label>E-mail</mat-label> <input matInput name="email" formControlName="email" />
-      <mat-error>Você precisa escrever um endereço de e-mail válido</mat-error>
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-      <mat-label>Senha</mat-label>
-      <input matInput name="password" type="password" formControlName="password" />
-      <mat-error>Você precisa digitar uma senha</mat-error>
-    </mat-form-field>
-    <button mat-flat-button color="primary" type="submit" [disabled]="enviando()">
-      {{ enviando() ? 'Entrando...' : 'Entrar' }}
-    </button>
-    <p>Não tem conta? <a routerLink="/registro">Cadastre-se</a></p>
-  </form>
-</div>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <h3>Capacita Web — Entrar</h3>
+  @if (mostrarErro()) {
+    <h3>Endereço de e-mail ou senha inválidos, por favor tente novamente!</h3>
+  }
+  <mat-form-field appearance="outline">
+    <mat-label>E-mail</mat-label> <input matInput name="email" formControlName="email" />
+    <mat-error>Você precisa escrever um endereço de e-mail válido</mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Senha</mat-label>
+    <input matInput name="password" type="password" formControlName="password" />
+    <mat-error>Você precisa digitar uma senha</mat-error>
+  </mat-form-field>
+  <button mat-flat-button color="primary" type="submit" [disabled]="enviando()">
+    {{ enviando() ? 'Entrando...' : 'Entrar' }}
+  </button>
+  <p>Não tem conta? <a routerLink="/registro">Cadastre-se</a></p>
+</form>

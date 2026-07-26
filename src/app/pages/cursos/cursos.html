@@ -1,0 +1,49 @@
+<div class="container-pagina">
+  <div class="header-pagina">
+    <h2>Cursos Disponíveis</h2>
+    <p>Explore nossa biblioteca e aprimore suas habilidades</p>
+  </div>
+
+  <div class="grid-cursos">
+    @for (curso of cursoService.cursos(); track curso.id) {
+      <mat-card class="card-curso" appearance="outlined">
+        <!-- Imagem do Curso -->
+        <div class="container-imagem">
+          <img
+            mat-card-image
+            [src]="'https://picsum.photos/seed/' + curso.id + '/400/200'"
+            [alt]="curso.nome"
+            class="imagem-curso"
+          />
+          @if (estaMatriculado(curso.id)) {
+            <span class="badge-matriculado"> <mat-icon>check_circle</mat-icon> Matriculado </span>
+          }
+        </div>
+
+        <mat-card-header class="cabecalho-card">
+          <mat-card-title class="nome-curso">{{ curso.nome }}</mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content class="conteudo-card">
+          <mat-chip-set class="chips-info">
+            <mat-chip class="chip-nivel">
+              <mat-icon matChipAvatar>bar_chart</mat-icon>
+              {{ curso.nivel }}
+            </mat-chip>
+            <mat-chip class="chip-horas">
+              <mat-icon matChipAvatar>schedule</mat-icon>
+              {{ curso.horas }}h
+            </mat-chip>
+          </mat-chip-set>
+        </mat-card-content>
+
+        <mat-card-actions class="acoes-card" align="end">
+          <a mat-flat-button color="primary" [routerLink]="['/cursos', curso.id]">
+            Acessar Curso
+            <mat-icon>arrow_forward</mat-icon>
+          </a>
+        </mat-card-actions>
+      </mat-card>
+    }
+  </div>
+</div>
