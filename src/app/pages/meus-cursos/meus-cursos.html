@@ -1,0 +1,33 @@
+<div class="container-pagina">
+  <div class="header-pagina">
+    <h2>Meus Cursos</h2>
+    <p>Acompanhe o andamento dos cursos em que você está matriculado</p>
+  </div>
+  @if (matriculasComCurso().length === 0) {
+    <p>
+      Você ainda não está matriculado em nenhum curso. Explore o catálogo em "Cursos" para começar.
+    </p>
+  } @else {
+    <table mat-table [dataSource]="matriculasComCurso()" class="tabela-progresso">
+      <ng-container matColumnDef="curso">
+        <th mat-header-cell *matHeaderCellDef>Curso</th>
+        <td mat-cell *matCellDef="let item">{{ item.curso?.nome }}</td>
+      </ng-container>
+      <ng-container matColumnDef="nivel">
+        <th mat-header-cell *matHeaderCellDef>Nível</th>
+        <td mat-cell *matCellDef="let item">{{ item.curso?.nivel }}</td>
+      </ng-container>
+      <ng-container matColumnDef="progresso">
+        <th mat-header-cell *matHeaderCellDef>Progresso</th>
+        <td mat-cell *matCellDef="let item">
+          <div class="celula-progresso">
+            <mat-progress-bar mode="determinate" [value]="item.percentual"></mat-progress-bar>
+            <span>{{ item.percentual }}%</span>
+          </div>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="colunasExibidas"></tr>
+      <tr mat-row *matRowDef="let row; columns: colunasExibidas"></tr>
+    </table>
+  }
+</div>

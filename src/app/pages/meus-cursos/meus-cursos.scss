@@ -1,0 +1,34 @@
+.container-pagina {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 24px;
+}
+.header-pagina {
+  margin-bottom: 24px;
+  h2 {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0 0 6px 0;
+  }
+  p {
+    font-size: 1rem;
+    color: #64748b;
+    margin: 0;
+  }
+}
+.tabela-progresso {
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+}
+.celula-progresso {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 200px;
+  mat-progress-bar {
+    flex: 1;
+  }
+}

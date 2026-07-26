@@ -33,4 +33,19 @@ export class CursoService {
       .post<Matricula>(`${this.apiUrl}/matriculas`, matricula)
       .pipe(tap((criada) => this.matriculas.update((atual) => [...atual, criada])));
   }
+
+  atualizarProgresso(matriculaId: number, horasAdicionais: number): Observable<Matricula> {
+    const atual = this.matriculas().find((m) => m.id === matriculaId);
+    const novoTotal = Math.max(0, (atual?.horasAssistidas ?? 0) + horasAdicionais);
+
+    return this.http
+      .patch<Matricula>(`${this.apiUrl}/matriculas/${matriculaId}`, { horasAssistidas: novoTotal })
+      .pipe(
+        tap((atualizada) => {
+          this.matriculas.update((lista) =>
+            lista.map((m) => (m.id === matriculaId ? { ...m, ...atualizada } : m)),
+          );
+        }),
+      );
+  }
 }

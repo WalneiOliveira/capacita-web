@@ -9,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { CursoService } from '../../services/curso.service';
 import { AuthService } from '../../services/auth.service';
 import { Curso } from '../../models/curso.model';
+
 @Component({
   selector: 'app-curso-detalhe',
   standalone: true,
@@ -29,12 +30,14 @@ export class CursoDetalhe implements OnInit {
     if (!c) return false;
     return this.cursoService.matriculas().some((m) => m.cursoId === c.id);
   });
+
   ngOnInit(): void {
     const cursoId = Number(this.route.snapshot.paramMap.get('id'));
     const cursos$ =
       this.cursoService.cursos().length === 0
         ? this.cursoService.carregarCursos()
         : of(this.cursoService.cursos());
+
     cursos$.subscribe(() => {
       this.curso.set(this.cursoService.buscarCursoPorId(cursoId));
       const usuario = this.auth.usuario();
@@ -53,10 +56,12 @@ export class CursoDetalhe implements OnInit {
       });
     });
   }
+
   protected inscrever(): void {
     const c = this.curso();
     const usuario = this.auth.usuario();
     if (!c || !usuario) return;
+
     this.matriculando.set(true);
     this.cursoService
       .matricular({
