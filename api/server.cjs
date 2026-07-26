@@ -96,7 +96,43 @@ function exigirLogin(req, res, next) {
   }
 }
 
+function exigirBackoffice(req, res, next) {
+  const cabecalho = req.headers.authorization;
+  if (!cabecalho || !cabecalho.startsWith('Bearer ')) {
+    return res.status(401).json({ error: 'Token não informado.' });
+  }
+  const token = cabecalho.replace('Bearer ', '');
+  try {
+    const payload = jwt.verify(token, SEGREDO_JWT);
+    const banco = lerBanco();
+    const usuario = banco.users.find((u) => u.id === payload.sub);
+    if (!usuario || usuario.role !== 'backoffice') {
+      return res.status(403).json({ error: 'Acesso restrito ao backoffice.' });
+    }
+    req.usuarioId = payload.sub;
+    next();
+  } catch {
+    return res.status(401).json({ error: 'Token inválido ou expirado.' });
+  }
+}
+
 server.use(['/cursos', '/videos', '/matriculas'], exigirLogin);
+
+server.use(['/users'], exigirBackoffice);
+
+router.render = (req, res) => {
+  let dados = res.locals.data;
+  if (req.path.startsWith('/users')) {
+    if (Array.isArray(dados)) {
+      dados = dados.map(({ password, ...resto }) => resto);
+    } else if (dados && typeof dados === 'object' && 'password' in dados) {
+      const { password, ...resto } = dados;
+      dados = resto;
+    }
+  }
+  res.jsonp(dados);
+};
+
 server.use(router);
 
 server.listen(3000, () => {

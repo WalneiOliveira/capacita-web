@@ -28,20 +28,22 @@ export class Registro {
       validators: [Validators.required, Validators.minLength(6)],
     }),
   });
-  protected async onSubmit(): Promise<void> {
+  protected onSubmit(): void {
     if (this.registroForm.invalid) {
       this.registroForm.markAllAsTouched();
       return;
     }
     this.mostrarErro.set(false);
     this.enviando.set(true);
-    try {
-      await this.auth.registrar(this.registroForm.getRawValue());
-      this.router.navigate(['/']);
-    } catch {
-      this.mostrarErro.set(true);
-    } finally {
-      this.enviando.set(false);
-    }
+    this.auth.registrar(this.registroForm.getRawValue()).subscribe({
+      next: () => {
+        this.enviando.set(false);
+        this.router.navigate(['/']);
+      },
+      error: () => {
+        this.enviando.set(false);
+        this.mostrarErro.set(true);
+      },
+    });
   }
 }

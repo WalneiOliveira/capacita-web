@@ -1,0 +1,44 @@
+@if (curso(); as c) {
+  <div class="container-pagina">
+    <div class="header-pagina">
+      <h2>{{ c.nome }}</h2>
+      <p>Nível {{ c.nivel }} · {{ c.horas }}h de conteúdo</p>
+    </div>
+    <div class="acoes-inscricao">
+      @if (jaMatriculado()) {
+        <mat-chip color="primary" highlighted>
+          <mat-icon matChipAvatar>check_circle</mat-icon> Você já está matriculado neste curso
+        </mat-chip>
+      } @else {
+        <button mat-flat-button color="primary" [disabled]="matriculando()" (click)="inscrever()">
+          {{ matriculando() ? 'Inscrevendo...' : 'Inscrever-se neste curso' }}
+        </button>
+      }
+    </div>
+    <div class="grid-videos">
+      @for (video of videosSeguro(); track video.titulo) {
+        <mat-card class="card-video" appearance="outlined">
+          <mat-card-header>
+            <mat-card-title>{{ video.titulo }}</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <div class="wrapper-video">
+              <iframe
+                [src]="video.url"
+                allow="
+                  accelerometer;
+                  autoplay;
+                  clipboard-write;
+                  encrypted-media;
+                  gyroscope;
+                  picture-in-picture;
+                "
+                allowfullscreen
+              ></iframe>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      }
+    </div>
+  </div>
+}

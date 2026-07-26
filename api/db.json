@@ -26,6 +26,14 @@
       "email": "ana.souza@escola.df.gov.br",
       "cursoId": 1,
       "horasAssistidas": 12
+    },
+    {
+      "nome": "Teste da Silva",
+      "email": "exemplo@exemplo.com",
+      "cursoId": 2,
+      "userId": "77ce5bc2-8f93-4a45-b85a-acbf4061823a",
+      "horasAssistidas": 0,
+      "id": 2
     }
   ],
   "videos": [
@@ -67,7 +75,7 @@
       "email": "bruno@acme.com",
       "password": "$2a$10$3IELqK2TJU004DE47CJzZOxG5C3kvDKRTm4lwZdzoyl.l6oJsU3Sa",
       "isActive": true,
-      "role": "backoffice"
+      "role": "aluno"
     },
     {
       "email": "walnei@exemplo.com",
@@ -99,7 +107,7 @@
       "email": "novo@email.com",
       "password": "$2b$10$sn5uLZWcwE5jkiOp/iRnPuDjJdNwolIuwyocIi/PbACLCpHVsxj/K",
       "isActive": true,
-      "role": "aluno"
+      "role": "backoffice"
     }
   ]
 }

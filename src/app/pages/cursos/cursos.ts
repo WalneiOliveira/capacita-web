@@ -10,13 +10,7 @@ import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-cursos',
   standalone: true,
-  imports: [
-    RouterLink,
-    MatCardModule,
-    MatButtonModule,
-    MatChipsModule,
-    MatIconModule
-  ],
+  imports: [RouterLink, MatCardModule, MatButtonModule, MatChipsModule, MatIconModule],
   templateUrl: './cursos.html',
   styleUrl: './cursos.scss',
 })
@@ -25,11 +19,11 @@ export class Cursos implements OnInit {
   private readonly auth = inject(AuthService);
 
   protected readonly idsMatriculados = computed(
-    () => new Set(this.cursoService.matriculas().map((m) => m.cursoId))
+    () => new Set(this.cursoService.matriculas().map((m) => m.cursoId)),
   );
 
   ngOnInit(): void {
-    this.cursoService.carregarCursos();
+    this.cursoService.carregarCursos().subscribe();
     const usuario = this.auth.usuario();
     if (usuario) {
       this.cursoService.carregarMinhasMatriculas(usuario.id);

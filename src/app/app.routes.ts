@@ -1,3 +1,4 @@
+import { CursoDetalhe } from './pages/curso-detalhe/curso-detalhe';
 import { Routes } from '@angular/router';
 import { Login } from './pages/login/login';
 import { Registro } from './pages/registro/registro';
@@ -11,6 +12,9 @@ export const routes: Routes = [
     path: '',
     component: Home,
     canActivate: [authGuard],
-    children: [{ path: 'cursos', component: Cursos }],
+    children: [
+      { path: 'cursos', component: Cursos },
+      { path: 'cursos/:id', component: CursoDetalhe },
+    ],
   },
 ];

@@ -1,0 +1,57 @@
+.container-pagina {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 24px;
+}
+.header-pagina {
+  margin-bottom: 16px;
+  h2 {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0 0 6px 0;
+  }
+  p {
+    font-size: 1rem;
+    color: #64748b;
+    margin: 0;
+  }
+}
+.acoes-inscricao {
+  margin-bottom: 32px;
+}
+.grid-videos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 24px;
+}
+.card-video {
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  overflow: hidden;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  overflow: hidden; // Garante que a imagem respeite as bordas arredondadas
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+  background-color: #eef1fb;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.15) !important;
+  }
+}
+.wrapper-video {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%;
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+}

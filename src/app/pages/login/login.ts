@@ -27,20 +27,22 @@ export class Login {
       validators: [Validators.required, Validators.minLength(6)],
     }),
   });
-  protected async onSubmit(): Promise<void> {
+  protected onSubmit(): void {
     if (this.loginForm.invalid) {
       this.loginForm.markAllAsTouched();
       return;
     }
     this.mostrarErro.set(false);
     this.enviando.set(true);
-    try {
-      await this.auth.login(this.loginForm.getRawValue());
-      this.router.navigate(['/']);
-    } catch {
-      this.mostrarErro.set(true);
-    } finally {
-      this.enviando.set(false);
-    }
+    this.auth.login(this.loginForm.getRawValue()).subscribe({
+      next: () => {
+        this.enviando.set(false);
+        this.router.navigate(['/']);
+      },
+      error: () => {
+        this.enviando.set(false);
+        this.mostrarErro.set(true);
+      },
+    });
   }
 }
