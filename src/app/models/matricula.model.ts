@@ -7,4 +7,5 @@ export interface Matricula {
   cursoId: Curso['id'];
   userId: User['id'];
   horasAssistidas: number;
+  dataMatricula?: string;
 }

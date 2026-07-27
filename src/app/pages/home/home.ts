@@ -12,6 +12,7 @@ import { AuthService } from '../../services/auth.service';
 export class Home {
   protected readonly title = signal('capacita-web');
   protected auth = inject(AuthService);
+  protected readonly isBackoffice = this.auth.ehBackoffice;
   private router = inject(Router);
   protected sair(): void {
     this.auth.logout();

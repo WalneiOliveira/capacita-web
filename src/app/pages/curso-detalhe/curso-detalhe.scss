@@ -1,57 +1,108 @@
-.container-pagina {
-  max-width: 1200px;
+:host {
+  display: block;
+}
+
+.container-detalhe {
+  max-width: 900px;
   margin: 0 auto;
   padding: 32px 24px;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
-.header-pagina {
-  margin-bottom: 16px;
-  h2 {
-    font-size: 1.875rem;
+
+.botao-voltar {
+  margin-bottom: 20px;
+}
+
+/* Header do Curso */
+.header-curso {
+  margin-bottom: 32px;
+
+  h1 {
+    font-size: 2.25rem;
     font-weight: 700;
     color: #1e293b;
     margin: 0 0 6px 0;
   }
-  p {
-    font-size: 1rem;
+
+  .meta-info {
+    font-size: 0.95rem;
     color: #64748b;
+    margin-bottom: 16px;
+  }
+
+  .badge-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #e0e7ff;
+    color: #3730a3;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 500;
+
+    mat-icon {
+      font-size: 18px;
+      width: 18px;
+      height: 18px;
+      color: #4f46e5;
+    }
+  }
+
+  .btn-matricular {
+    padding: 8px 24px;
+    font-size: 0.95rem;
+  }
+}
+
+/* Seção do Conteúdo (Lista de Aulas) */
+.secao-aulas {
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+
+  h2 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #0f172a;
+    margin: 0 0 16px 0;
+  }
+
+  .sem-videos {
+    color: #64748b;
+    font-style: italic;
     margin: 0;
   }
-}
-.acoes-inscricao {
-  margin-bottom: 32px;
-}
-.grid-videos {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-  gap: 24px;
-}
-.card-video {
-  border-radius: 12px;
-  border: 1px solid #e2e8f0;
-  overflow: hidden;
-  border-radius: 12px;
-  border: 1px solid #e2e8f0;
-  overflow: hidden; // Garante que a imagem respeite as bordas arredondadas
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
-  background-color: #eef1fb;
 
-  &:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.15) !important;
-  }
-}
-.wrapper-video {
-  position: relative;
-  width: 100%;
-  padding-top: 56.25%;
-  iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: 0;
+  .lista-aulas {
+    border: 1px solid #f1f5f9;
+    border-radius: 8px;
+    overflow: hidden;
+    padding: 0;
+
+    .item-aula {
+      border-bottom: 1px solid #f1f5f9;
+      transition: background-color 0.2s ease;
+      text-align: left;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      &:hover {
+        background-color: #f8fafc;
+      }
+
+      &.preview {
+        background-color: #f8fafc;
+      }
+
+      &[disabled] {
+        opacity: 1;
+        cursor: pointer;
+      }
+    }
   }
 }

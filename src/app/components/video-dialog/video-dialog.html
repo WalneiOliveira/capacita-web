@@ -1,0 +1,37 @@
+<div class="dialog-header">
+  <div>
+    <h2 mat-dialog-title>{{ data.titulo }}</h2>
+    @if (preview) {
+      <p class="preview-badge">Pré-visualização</p>
+    }
+  </div>
+  <button mat-icon-button mat-dialog-close>
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+
+<mat-dialog-content class="dialog-content">
+  <div class="video-container">
+    <iframe
+      [src]="videoUrl"
+      title="Video Player"
+      frameborder="0"
+      allow="
+        accelerometer;
+        autoplay;
+        clipboard-write;
+        encrypted-media;
+        gyroscope;
+        picture-in-picture;
+      "
+      allowfullscreen
+    >
+    </iframe>
+  </div>
+  @if (preview) {
+    <p class="preview-note">
+      Você está assistindo a uma pré-visualização. Se quiser continuar aprendendo, matricule-se no
+      curso.
+    </p>
+  }
+</mat-dialog-content>

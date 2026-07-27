@@ -3,9 +3,18 @@ mat-toolbar {
   color: #ffffff;
   padding: 0 16px;
 
-  > span:first-child {
+  .logo {
     font-size: 1.5rem;
     font-weight: 700;
+    color: #ffffff;
+    text-decoration: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+
+    &:hover {
+      opacity: 0.9;
+    }
   }
 }
 

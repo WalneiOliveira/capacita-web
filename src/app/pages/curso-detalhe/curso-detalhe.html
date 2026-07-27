@@ -1,44 +1,54 @@
-@if (curso(); as c) {
-  <div class="container-pagina">
-    <div class="header-pagina">
-      <h2>{{ c.nome }}</h2>
-      <p>Nível {{ c.nivel }} · {{ c.horas }}h de conteúdo</p>
-    </div>
-    <div class="acoes-inscricao">
+<div class="container-detalhe">
+  <a mat-button routerLink="/cursos" class="botao-voltar">
+    <mat-icon>arrow_back</mat-icon> Voltar para Cursos
+  </a>
+
+  @if (curso(); as c) {
+    <header class="header-curso">
+      <h1>{{ c.nome }}</h1>
+      <p class="meta-info">Nível {{ c.nivel }} · {{ c.horas }}h de conteúdo</p>
+
       @if (jaMatriculado()) {
-        <mat-chip color="primary" highlighted>
-          <mat-icon matChipAvatar>check_circle</mat-icon> Você já está matriculado neste curso
-        </mat-chip>
+        <div class="badge-status">
+          <mat-icon>check_circle</mat-icon>
+          <span>Você já está matriculado neste curso</span>
+        </div>
       } @else {
-        <button mat-flat-button color="primary" [disabled]="matriculando()" (click)="inscrever()">
-          {{ matriculando() ? 'Inscrevendo...' : 'Inscrever-se neste curso' }}
+        <button
+          mat-flat-button
+          color="primary"
+          class="btn-matricular"
+          [disabled]="matriculando()"
+          (click)="inscrever()"
+        >
+          <mat-icon>school</mat-icon>
+          {{ matriculando() ? 'Matriculando...' : 'Matricular-se Agora' }}
         </button>
       }
-    </div>
-    <div class="grid-videos">
-      @for (video of videosSeguro(); track video.titulo) {
-        <mat-card class="card-video" appearance="outlined">
-          <mat-card-header>
-            <mat-card-title>{{ video.titulo }}</mat-card-title>
-          </mat-card-header>
-          <mat-card-content>
-            <div class="wrapper-video">
-              <iframe
-                [src]="video.url"
-                allow="
-                  accelerometer;
-                  autoplay;
-                  clipboard-write;
-                  encrypted-media;
-                  gyroscope;
-                  picture-in-picture;
-                "
-                allowfullscreen
-              ></iframe>
-            </div>
-          </mat-card-content>
-        </mat-card>
+    </header>
+
+    <div class="secao-aulas">
+      <h2>
+        Conteúdo do Curso ({{ videos().length }} {{ videos().length === 1 ? 'aula' : 'aulas' }})
+      </h2>
+
+      @if (videos().length === 0) {
+        <p class="sem-videos">Nenhum vídeo cadastrado para este curso ainda.</p>
+      } @else {
+        <mat-action-list class="lista-aulas">
+          @for (aula of videos(); track aula.id; let index = $index) {
+            <button
+              mat-list-item
+              (click)="assistirAula(aula)"
+              class="item-aula"
+              [class.preview]="!jaMatriculado()"
+            >
+              <mat-icon matListItemIcon color="primary"> play_circle_filled </mat-icon>
+              <span matListItemTitle>{{ index + 1 }}. {{ aula.titulo }}</span>
+            </button>
+          }
+        </mat-action-list>
       }
     </div>
-  </div>
-}
+  }
+</div>

@@ -1,34 +1,112 @@
 .container-pagina {
-  max-width: 1200px;
+  max-width: 960px;
   margin: 0 auto;
   padding: 32px 24px;
 }
+
 .header-pagina {
   margin-bottom: 24px;
+
   h2 {
-    font-size: 1.875rem;
+    font-size: 1.75rem;
     font-weight: 700;
     color: #1e293b;
-    margin: 0 0 6px 0;
+    margin: 0 0 4px 0;
   }
+
   p {
-    font-size: 1rem;
+    font-size: 0.95rem;
     color: #64748b;
     margin: 0;
   }
 }
-.tabela-progresso {
-  width: 100%;
-  border-radius: 12px;
-  overflow: hidden;
+
+.container-tabela {
+  background: #ffffff;
+  border-radius: 8px;
   border: 1px solid #e2e8f0;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
-.celula-progresso {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  min-width: 200px;
-  mat-progress-bar {
-    flex: 1;
+
+.tabela-cursos {
+  width: 100%;
+
+  th.mat-mdc-header-cell {
+    background-color: #f8fafc;
+    color: #475569;
+    font-weight: 600;
+    font-size: 0.875rem;
+    border-bottom: 1px solid #e2e8f0;
   }
+
+  td.mat-mdc-cell {
+    padding: 16px;
+    border-bottom: 1px solid #f1f5f9;
+    color: #1e293b;
+    font-size: 0.95rem;
+  }
+
+  tr.mat-mdc-row:last-child td.mat-mdc-cell {
+    border-bottom: none;
+  }
+
+  .coluna-principal {
+    font-weight: 500;
+  }
+
+  .badge-nivel {
+    text-transform: capitalize;
+    background-color: #f1f5f9;
+    color: #334155;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+
+  .coluna-horas {
+    .total-horas {
+      color: #94a3b8;
+      font-size: 0.85rem;
+    }
+  }
+
+  .header-center {
+    text-align: center;
+  }
+
+  .coluna-cancelar {
+    text-align: center;
+
+    .btn-cancelar {
+      color: #dc2626;
+      font-size: 0.85rem;
+      font-weight: 500;
+
+      mat-icon {
+        font-size: 18px;
+        width: 18px;
+        height: 18px;
+        margin-right: 4px;
+      }
+
+      &:hover {
+        background-color: #fef2f2;
+      }
+    }
+  }
+
+  .sem-dado {
+    color: #94a3b8;
+  }
+}
+
+.sem-cursos {
+  text-align: center;
+  padding: 48px 16px;
+  background: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  color: #64748b;
 }

@@ -1,0 +1,94 @@
+@if (!carregando) {
+  @if (!auth.ehBackoffice()) {
+    <div class="dashboard-container">
+      <div class="welcome-header">
+        <h1>Olá, {{ auth.usuario()?.name }}! 👋</h1>
+        <p>Acompanhe seu progresso e continue aprendendo.</p>
+      </div>
+
+      <div class="metrics-grid">
+        <mat-card class="metric-card combined-metrics">
+          <mat-card-content>
+            <div class="metric-item">
+              <mat-icon color="primary">school</mat-icon>
+              <div class="metric-info">
+                <h3>{{ totalCursosMatriculados() }}</h3>
+                <p>Cursos Inscritos</p>
+              </div>
+            </div>
+
+            <div class="metric-item">
+              <mat-icon color="accent">schedule</mat-icon>
+              <div class="metric-info">
+                <h3>{{ totalHorasAssistidas() | number: '1.1-1' }}h</h3>
+                <p>Horas Concluídas</p>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <section class="section-container">
+        <h2>Meus Cursos em Andamento</h2>
+
+        @if (meusCursosComProgresso().length === 0) {
+          <p class="empty-state">Você ainda não está matriculado em nenhum curso.</p>
+        } @else {
+          <div class="courses-grid">
+            @for (item of meusCursosComProgresso(); track item.curso.id) {
+              <mat-card class="course-card">
+                <mat-card-header>
+                  <mat-card-title>{{ item.curso.nome }}</mat-card-title>
+                  <mat-card-subtitle>Nível: {{ item.curso.nivel | titlecase }}</mat-card-subtitle>
+                </mat-card-header>
+
+                <mat-card-content>
+                  <div class="progress-info">
+                    <span>Progresso: {{ item.porcentagemConcluida }}%</span>
+                    <span>{{ item.matricula.horasAssistidas }}h / {{ item.curso.horas }}h</span>
+                  </div>
+                  <mat-progress-bar mode="determinate" [value]="item.porcentagemConcluida" />
+                </mat-card-content>
+
+                <mat-card-actions align="end">
+                  <button mat-raised-button color="primary" (click)="irParaCurso(item.curso.id)">
+                    <mat-icon>play_arrow</mat-icon> Continuar
+                  </button>
+                </mat-card-actions>
+              </mat-card>
+            }
+          </div>
+        }
+      </section>
+
+      @if (cursosDisponiveis().length > 0) {
+        <section class="section-container">
+          <h2>Outros Cursos Disponíveis</h2>
+
+          <div class="courses-grid">
+            @for (curso of cursosDisponiveis(); track curso.id) {
+              <mat-card class="course-card">
+                <mat-card-header>
+                  <mat-card-title>{{ curso.nome }}</mat-card-title>
+                  <mat-card-subtitle>
+                    Nível: {{ curso.nivel | titlecase }} | Carga: {{ curso.horas }}h
+                  </mat-card-subtitle>
+                </mat-card-header>
+
+                <mat-card-actions align="end">
+                  <button mat-stroked-button color="primary" (click)="irParaCurso(curso.id)">
+                    Ver Detalhes
+                  </button>
+                </mat-card-actions>
+              </mat-card>
+            }
+          </div>
+        </section>
+      }
+    </div>
+  }
+} @else {
+  <div class="loading-spinner">
+    <mat-spinner />
+  </div>
+}

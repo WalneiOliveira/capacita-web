@@ -1,33 +1,73 @@
 <div class="container-pagina">
   <div class="header-pagina">
     <h2>Meus Cursos</h2>
-    <p>Acompanhe o andamento dos cursos em que você está matriculado</p>
+    <p>Acompanhe seus cursos e progresso de aprendizado</p>
   </div>
+
   @if (matriculasComCurso().length === 0) {
-    <p>
-      Você ainda não está matriculado em nenhum curso. Explore o catálogo em "Cursos" para começar.
-    </p>
+    <div class="sem-cursos">
+      <p>Você ainda não possui matrículas cadastradas.</p>
+    </div>
   } @else {
-    <table mat-table [dataSource]="matriculasComCurso()" class="tabela-progresso">
-      <ng-container matColumnDef="curso">
-        <th mat-header-cell *matHeaderCellDef>Curso</th>
-        <td mat-cell *matCellDef="let item">{{ item.curso?.nome }}</td>
-      </ng-container>
-      <ng-container matColumnDef="nivel">
-        <th mat-header-cell *matHeaderCellDef>Nível</th>
-        <td mat-cell *matCellDef="let item">{{ item.curso?.nivel }}</td>
-      </ng-container>
-      <ng-container matColumnDef="progresso">
-        <th mat-header-cell *matHeaderCellDef>Progresso</th>
-        <td mat-cell *matCellDef="let item">
-          <div class="celula-progresso">
-            <mat-progress-bar mode="determinate" [value]="item.percentual"></mat-progress-bar>
-            <span>{{ item.percentual }}%</span>
-          </div>
-        </td>
-      </ng-container>
-      <tr mat-header-row *matHeaderRowDef="colunasExibidas"></tr>
-      <tr mat-row *matRowDef="let row; columns: colunasExibidas"></tr>
-    </table>
+    <div class="container-tabela">
+      <table mat-table [dataSource]="matriculasComCurso()" class="tabela-cursos">
+        
+        <!-- Curso -->
+        <ng-container matColumnDef="curso">
+          <th mat-header-cell *matHeaderCellDef>Curso</th>
+          <td mat-cell *matCellDef="let item" class="coluna-principal">
+            {{ item.curso?.nome || 'Curso não encontrado' }}
+          </td>
+        </ng-container>
+
+        <!-- Nível -->
+        <ng-container matColumnDef="nivel">
+          <th mat-header-cell *matHeaderCellDef>Nível</th>
+          <td mat-cell *matCellDef="let item">
+            <span class="badge-nivel">{{ item.curso?.nivel || '-' }}</span>
+          </td>
+        </ng-container>
+
+        <!-- Data de Matrícula -->
+        <ng-container matColumnDef="dataMatricula">
+          <th mat-header-cell *matHeaderCellDef>Data de Matrícula</th>
+          <td mat-cell *matCellDef="let item">
+            @if (item.matricula.dataMatricula) {
+              {{ item.matricula.dataMatricula | date:'dd/MM/yyyy' }}
+            } @else {
+              <span class="sem-dado">-</span>
+            }
+          </td>
+        </ng-container>
+
+        <!-- Horas Assistidas -->
+        <ng-container matColumnDef="horasAssistidas">
+          <th mat-header-cell *matHeaderCellDef>Horas Assistidas</th>
+          <td mat-cell *matCellDef="let item" class="coluna-horas">
+            <strong>{{ item.matricula.horasAssistidas | number:'1.0-2' }}h</strong>
+            @if (item.curso?.horas) {
+              <span class="total-horas"> / {{ item.curso.horas }}h</span>
+            }
+          </td>
+        </ng-container>
+
+        <!-- Coluna Cancelar Matrícula -->
+        <ng-container matColumnDef="cancelar">
+          <th mat-header-cell *matHeaderCellDef class="header-center">Matrícula</th>
+          <td mat-cell *matCellDef="let item" class="coluna-cancelar">
+            <button 
+              mat-button 
+              class="btn-cancelar"
+              (click)="cancelarMatricula(item.matricula.id, item.curso?.nome)">
+              <mat-icon>cancel</mat-icon>
+              Cancelar
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="colunasExibidas"></tr>
+        <tr mat-row *matRowDef="let row; columns: colunasExibidas;"></tr>
+      </table>
+    </div>
   }
 </div>

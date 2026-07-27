@@ -11,7 +11,7 @@
         <div class="container-imagem">
           <img
             mat-card-image
-            [src]="'https://picsum.photos/seed/' + curso.id + '/400/200'"
+            [src]="imagemDoCurso(curso)"
             [alt]="curso.nome"
             class="imagem-curso"
           />
@@ -28,11 +28,15 @@
           <mat-chip-set class="chips-info">
             <mat-chip class="chip-nivel">
               <mat-icon matChipAvatar>bar_chart</mat-icon>
-              {{ curso.nivel }}
+              {{ nivelLabel(curso.nivel) }}
             </mat-chip>
             <mat-chip class="chip-horas">
               <mat-icon matChipAvatar>schedule</mat-icon>
               {{ curso.horas }}h
+            </mat-chip>
+            <mat-chip class="chip-count">
+              <mat-icon matChipAvatar>group</mat-icon>
+              {{ cursosPorNivelText(curso.nivel) }}
             </mat-chip>
           </mat-chip-set>
         </mat-card-content>

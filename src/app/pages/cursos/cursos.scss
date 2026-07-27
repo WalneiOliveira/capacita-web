@@ -34,7 +34,9 @@
   border-radius: 12px;
   border: 1px solid #e2e8f0;
   overflow: hidden; // Garante que a imagem respeite as bordas arredondadas
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
   background-color: #ffffff;
 
   &:hover {
@@ -46,14 +48,23 @@
   .container-imagem {
     position: relative;
     width: 100%;
-    height: 160px;
+    min-height: 160px;
     background-color: #f1f5f9;
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+    padding: 12px;
 
     .imagem-curso {
+      display: block;
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      max-width: 180px;
+      max-height: 140px;
+      height: auto;
+      object-fit: contain;
+      object-position: center;
       margin: 0; // Sobrescreve margens padrão do mat-card-image
+      background-color: #f1f5f9;
     }
 
     .badge-matriculado {
@@ -95,15 +106,35 @@
     flex-grow: 1;
 
     .chips-info {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 6px;
+      overflow-x: auto;
+      padding-bottom: 2px;
+
       mat-chip {
-        font-size: 0.8rem;
+        display: inline-flex;
+        align-items: center;
+        font-size: 0.75rem;
+        line-height: 1.2;
         --mdc-chip-container-height: 28px;
+        padding: 0 5px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        min-width: 0;
 
         mat-icon {
-          font-size: 16px;
-          width: 16px;
-          height: 16px;
+          font-size: 12px;
+          width: 12px;
+          height: 12px;
+          margin-right: 2px;
           color: #64748b;
+        }
+
+        &.chip-count {
+          background-color: #f8fafc;
+          color: #344055;
         }
       }
     }

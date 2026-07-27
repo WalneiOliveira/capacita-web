@@ -1,0 +1,112 @@
+.app-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .brand-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.2rem;
+
+    &:hover {
+      opacity: 0.9;
+    }
+
+    .brand-icon {
+      font-size: 24px;
+    }
+  }
+
+  .toolbar-spacer {
+    flex: 1 1 auto;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 8px;
+
+    a.active {
+      background-color: rgba(255, 255, 255, 0.15);
+    }
+  }
+}
+
+.main-content {
+  padding: 16px;
+}
+
+/* Minimal hero overrides — favor Angular Material defaults */
+.dashboard-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 8px 12px 32px;
+}
+
+.welcome-header {
+  margin-bottom: 12px;
+}
+
+.courses-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+.section-container {
+  margin-top: 24px;
+}
+
+.course-card {
+  min-height: 120px;
+}
+
+.empty-state {
+  color: rgba(0, 0, 0, 0.6);
+  padding: 8px 0;
+}
+
+.loading-spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 55vh;
+}
+
+/* Keep styling surface small — let mat-card and Material typography handle layout */
+
+/* Combined metrics card tweaks */
+.combined-metrics {
+  padding: 16px;
+}
+.combined-metrics mat-card-content {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+.combined-metrics .metric-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0;
+  border: 0;
+}
+.combined-metrics mat-icon {
+  font-size: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  line-height: 1;
+}
+
+@media (max-width: 640px) {
+  .combined-metrics mat-card-content {
+    grid-template-columns: 1fr;
+  }
+}
