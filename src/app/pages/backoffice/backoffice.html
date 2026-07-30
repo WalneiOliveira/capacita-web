@@ -18,45 +18,6 @@
     <!-- ABA 1: GESTÃO DE CURSOS -->
     <mat-tab label="Cursos">
       <div class="tab-content">
-        <!-- Formulário de Curso -->
-        <mat-card class="form-card">
-          <mat-card-header>
-            <mat-card-title>{{ isEditingCurso() ? 'Editar Curso' : 'Novo Curso' }}</mat-card-title>
-          </mat-card-header>
-
-          <mat-card-content>
-            <form [formGroup]="cursoForm" (ngSubmit)="salvarCurso()">
-              <mat-form-field appearance="outline" class="full-width">
-                <mat-label>Nome do Curso</mat-label>
-                <input matInput formControlName="nome" placeholder="Ex: Angular Avançado" />
-              </mat-form-field>
-
-              <mat-form-field appearance="outline" class="full-width">
-                <mat-label>Nível</mat-label>
-                <mat-select formControlName="nivel">
-                  <mat-option value="básico">Básico</mat-option>
-                  <mat-option value="intermediário">Intermediário</mat-option>
-                  <mat-option value="avançado">Avançado</mat-option>
-                </mat-select>
-              </mat-form-field>
-
-              <mat-form-field appearance="outline" class="full-width">
-                <mat-label>Horas</mat-label>
-                <input matInput type="number" formControlName="horas" min="1" />
-              </mat-form-field>
-
-              <div class="button-group">
-                <button mat-raised-button color="primary" type="submit" [disabled]="cursoForm.invalid">
-                  {{ isEditingCurso() ? 'Atualizar' : 'Cadastrar' }}
-                </button>
-
-                @if (isEditingCurso()) {
-                  <button mat-button type="button" (click)="cancelarEdicao()">Cancelar</button>
-                }
-              </div>
-            </form>
-          </mat-card-content>
-        </mat-card>
 
         <!-- Tabela de Cursos -->
         <mat-card class="table-card">
@@ -124,6 +85,46 @@
             </table>
           </mat-card-content>
         </mat-card>
+        <!-- Formulário de Curso -->
+        <mat-card class="form-card">
+          <mat-card-header>
+            <mat-card-title>{{ isEditingCurso() ? 'Editar Curso' : 'Novo Curso' }}</mat-card-title>
+          </mat-card-header>
+
+          <mat-card-content>
+            <form [formGroup]="cursoForm" (ngSubmit)="salvarCurso()">
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Nome do Curso</mat-label>
+                <input matInput formControlName="nome" placeholder="Ex: Angular Avançado" />
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Nível</mat-label>
+                <mat-select formControlName="nivel">
+                  <mat-option value="básico">Básico</mat-option>
+                  <mat-option value="intermediário">Intermediário</mat-option>
+                  <mat-option value="avançado">Avançado</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Horas</mat-label>
+                <input matInput type="number" formControlName="horas" min="1" />
+              </mat-form-field>
+
+              <div class="button-group">
+                <button mat-raised-button color="primary" type="submit" [disabled]="cursoForm.invalid">
+                  {{ isEditingCurso() ? 'Atualizar' : 'Cadastrar' }}
+                </button>
+
+                @if (isEditingCurso()) {
+                  <button mat-button type="button" (click)="cancelarEdicao()">Cancelar</button>
+                }
+              </div>
+            </form>
+          </mat-card-content>
+        </mat-card>
+
       </div>
     </mat-tab>
 
@@ -191,53 +192,6 @@
     <!-- ABA 3: GESTÃO DE USUÁRIOS -->
     <mat-tab label="Usuários">
       <div class="tab-content">
-        <mat-card class="form-card">
-          <mat-card-header>
-            <mat-card-title>
-              {{ isEditingUsuario() ? 'Editar Usuário' : 'Novo Usuário' }}
-            </mat-card-title>
-          </mat-card-header>
-
-          <mat-card-content>
-            <form [formGroup]="usuarioForm" (ngSubmit)="salvarUsuario()">
-              <mat-form-field appearance="outline" class="full-width">
-                <mat-label>Nome</mat-label>
-                <input matInput formControlName="name" />
-              </mat-form-field>
-
-              <mat-form-field appearance="outline" class="full-width">
-                <mat-label>E-mail</mat-label>
-                <input matInput type="email" formControlName="email" />
-              </mat-form-field>
-
-              <mat-form-field appearance="outline" class="full-width">
-                <mat-label>Função (Role)</mat-label>
-                <mat-select formControlName="role">
-                  <mat-option value="aluno">Aluno</mat-option>
-                  <mat-option value="admin">Admin</mat-option>
-                </mat-select>
-              </mat-form-field>
-
-              <div class="button-group">
-                <button
-                  mat-raised-button
-                  color="primary"
-                  type="submit"
-                  [disabled]="usuarioForm.invalid"
-                >
-                  {{ isEditingUsuario() ? 'Atualizar' : 'Cadastrar' }}
-                </button>
-
-                @if (isEditingUsuario()) {
-                  <button mat-button type="button" (click)="cancelarEdicaoUsuario()">
-                    Cancelar
-                  </button>
-                }
-              </div>
-            </form>
-          </mat-card-content>
-        </mat-card>
-
         <mat-card class="table-card">
           <mat-card-header>
             <mat-card-title>Usuários Cadastrados</mat-card-title>
@@ -309,6 +263,52 @@
               <tr mat-header-row *matHeaderRowDef="displayedColumnsUsuarios"></tr>
               <tr mat-row *matRowDef="let row; columns: displayedColumnsUsuarios"></tr>
             </table>
+          </mat-card-content>
+        </mat-card>
+        <mat-card class="form-card">
+          <mat-card-header>
+            <mat-card-title>
+              Editar Usuário
+            </mat-card-title>
+          </mat-card-header>
+
+          <mat-card-content>
+            <form [formGroup]="usuarioForm" (ngSubmit)="salvarUsuario()">
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Nome</mat-label>
+                <input matInput formControlName="name" />
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>E-mail</mat-label>
+                <input matInput type="email" formControlName="email" />
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Função (Role)</mat-label>
+                <mat-select formControlName="role">
+                  <mat-option value="aluno">Aluno</mat-option>
+                  <mat-option value="backoffice">Backoffice</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <div class="button-group">
+                <button
+                  mat-raised-button
+                  color="primary"
+                  type="submit"
+                  [disabled]="usuarioForm.invalid"
+                >
+                  Atualizar
+                </button>
+
+                @if (isEditingUsuario()) {
+                  <button mat-button type="button" (click)="cancelarEdicaoUsuario()">
+                    Cancelar
+                  </button>
+                }
+              </div>
+            </form>
           </mat-card-content>
         </mat-card>
       </div>

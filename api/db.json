@@ -14,15 +14,9 @@
     },
     {
       "id": 3,
-      "nome": "Introdução ao Angular",
+      "nome": "Fundamentos de Angular",
       "nivel": "intermediário",
-      "horas": 40
-    },
-    {
-      "id": 4,
-      "nome": "Fundamentos de Agular em 1 hora",
-      "nivel": "intermediário",
-      "horas": 1
+      "horas": 5
     }
   ],
   "matriculas": [
@@ -44,39 +38,39 @@
     },
     {
       "nome": "João da Silva",
-      "email": "joao@email.com",
+      "email": "joao@exemplo.com",
       "cursoId": 1,
-      "userId": "4YKf_bs",
-      "horasAssistidas": 0,
-      "dataMatricula": "2026-07-28",
-      "id": 7
-    },
-    {
-      "nome": "Walnei",
-      "email": "walnei@exemplo.com",
-      "cursoId": 1,
-      "userId": "KUAd9wE",
-      "horasAssistidas": 0,
-      "dataMatricula": "2026-07-29",
-      "id": 8
-    },
-    {
-      "nome": "Walnei Assis",
-      "email": "walnei@exemplo.com",
-      "cursoId": 1,
-      "userId": "G2Fwmgs",
+      "userId": "Sg3n_gA",
       "horasAssistidas": 0,
       "dataMatricula": "2026-07-30",
-      "id": 9
+      "id": 12
     },
     {
       "nome": "Maria da Silva",
       "email": "maria@exemplo.com",
-      "cursoId": 4,
-      "userId": "48397aed-61ae-40d4-a5d7-6e984d9c95c2",
+      "cursoId": 1,
+      "userId": "-zLKTyN",
       "horasAssistidas": 0,
       "dataMatricula": "2026-07-30",
-      "id": 10
+      "id": 13
+    },
+    {
+      "nome": "Maria da Silva",
+      "email": "maria@exemplo.com",
+      "cursoId": 2,
+      "userId": "-zLKTyN",
+      "horasAssistidas": 0,
+      "dataMatricula": "2026-07-30",
+      "id": 14
+    },
+    {
+      "nome": "Walnei Assis",
+      "email": "walnei@admin.com",
+      "cursoId": 1,
+      "userId": "19sCYJx",
+      "horasAssistidas": 0,
+      "dataMatricula": "2026-07-30",
+      "id": 15
     }
   ],
   "videos": [
@@ -109,12 +103,6 @@
       "cursoId": 3,
       "titulo": "Masterclass Angular 20",
       "youtubeId": "_dh6dpaiTrY"
-    },
-    {
-      "titulo": "Angular Saindo do Zero",
-      "youtubeId": "umdXFJ4n7o",
-      "cursoId": 4,
-      "id": 6
     }
   ],
   "users": [
@@ -122,32 +110,37 @@
       "id": "25e7cf6d-6b4c-4c53-8836-fdcd2ac643d4",
       "name": "Escola",
       "email": "escola@df.gov.br",
-      "password": "$2b$10$p.HFZOTxwgBwI5/WuslKR.GKqOHRfXtZKklHxe.59k4VXcNEtb7Na",
+      "password": "$2b$10$6EC5r8dR116myBAVGf2BT.YDrhH0KtX7AcvSU8cZIGMvVUHjgqZBO",
       "isActive": true,
+      "precisaTrocarSenha": false,
       "role": "backoffice"
     },
     {
       "name": "João da Silva",
-      "email": "joao@email.com",
+      "email": "joao@exemplo.com",
+      "password": "$2b$10$fEOycFeO8jB3OWIRtlWyCOYykmzesR3LPeVpdO7BViPvu.RlZSdZ2",
       "role": "aluno",
       "isActive": true,
-      "id": "4YKf_bs"
+      "precisaTrocarSenha": true,
+      "id": "Sg3n_gA"
+    },
+    {
+      "name": "Maria da Silva",
+      "email": "maria@exemplo.com",
+      "password": "$2b$10$A53rl2oD2fQzrWE/JvF43O9xTdEG6EBKQ40hhEqqhU4ju123PTB9W",
+      "role": "aluno",
+      "isActive": true,
+      "precisaTrocarSenha": false,
+      "id": "-zLKTyN"
     },
     {
       "name": "Walnei Assis",
-      "email": "walnei@exemplo.com",
-      "password": "$2b$10$uXI9U.ZBkc2w//nPL46JDu9oi9tlUzjDx7NyTbx81BrYe5ipwnMua",
-      "role": "aluno",
+      "email": "walnei@admin.com",
+      "password": "$2b$10$TrQe/UFCvNFA1YtxrJKKEuMzFOPC8Hehv9zDTYo.sM2kOkXgCf8V2",
+      "role": "backoffice",
       "isActive": true,
-      "id": "G2Fwmgs"
-    },
-    {
-      "id": "48397aed-61ae-40d4-a5d7-6e984d9c95c2",
-      "name": "Maria da Silva",
-      "email": "maria@exemplo.com",
-      "password": "$2b$10$oFRghd9fX4N5TjLgBqIYTefqdwRC1WHN4rN5tOrGXC2.G9lz9eCI6",
-      "isActive": true,
-      "role": "aluno"
+      "precisaTrocarSenha": false,
+      "id": "19sCYJx"
     }
   ]
 }

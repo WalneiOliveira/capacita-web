@@ -1,0 +1,75 @@
+<div class="trocar-senha-container">
+  <mat-card class="trocar-senha-card" appearance="outlined">
+    <mat-card-header>
+      <div class="header-icon">
+        <mat-icon color="primary">lock_reset</mat-icon>
+      </div>
+      <mat-card-title>Troca de Senha Obrigatória</mat-card-title>
+      <mat-card-subtitle>
+        Você está usando uma senha temporária. Defina uma nova senha para continuar.
+      </mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      @if (mensagemErro()) {
+        <div class="alerta-erro">
+          <mat-icon>error_outline</mat-icon>
+          <span>{{ mensagemErro() }}</span>
+        </div>
+      }
+
+      <form [formGroup]="form" (ngSubmit)="salvarNovaSenha()">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Senha Atual (Temporária)</mat-label>
+          <input
+            matInput
+            type="password"
+            formControlName="senhaAtual"
+            placeholder="Digite sua senha atual"
+          />
+          @if (form.get('senhaAtual')?.hasError('required')) {
+            <mat-error>Informe a senha atual</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Nova Senha</mat-label>
+          <input
+            matInput
+            type="password"
+            formControlName="novaSenha"
+            placeholder="Mínimo 6 caracteres"
+          />
+          @if (form.get('novaSenha')?.hasError('required')) {
+            <mat-error>Informe a nova senha</mat-error>
+          } @else if (form.get('novaSenha')?.hasError('minlength')) {
+            <mat-error>A nova senha deve ter no mínimo 6 caracteres</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Confirmar Nova Senha</mat-label>
+          <input
+            matInput
+            type="password"
+            formControlName="confirmarSenha"
+            placeholder="Repita a nova senha"
+          />
+          @if (form.get('confirmarSenha')?.hasError('required')) {
+            <mat-error>Confirme a nova senha</mat-error>
+          }
+        </mat-form-field>
+
+        <button
+          mat-flat-button
+          color="primary"
+          type="submit"
+          class="btn-submit"
+          [disabled]="carregando()"
+        >
+          {{ carregando() ? 'Salvando...' : 'Atualizar Senha e Continuar' }}
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

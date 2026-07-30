@@ -292,9 +292,13 @@ export class Backoffice implements OnInit {
       return;
     }
 
+    const { titulo, youtubeId } = this.videoForm.getRawValue();
+
+    // Reordena explicitamente as chaves para que fiquem no padrão antigo
     const novoVideo = {
-      ...this.videoForm.getRawValue(),
       cursoId: cursoAtual.id,
+      titulo,
+      youtubeId,
     };
 
     this.cursoService.adicionarVideo(novoVideo).subscribe({
@@ -463,6 +467,7 @@ export class Backoffice implements OnInit {
       password: senhaTemporaria,
       role: 'aluno',
       isActive: true,
+      precisaTrocarSenha: true,
     };
 
     this.userService.createUser(novoUsuario).subscribe({

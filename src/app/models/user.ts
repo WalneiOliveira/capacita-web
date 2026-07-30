@@ -7,4 +7,5 @@ export interface User {
   password?: string;
   role: Role;
   isActive: boolean;
+  precisaTrocarSenha?: boolean;
 }
