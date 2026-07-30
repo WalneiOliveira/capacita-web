@@ -1,20 +1,21 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Service } from '@angular/core';
-
-import { User } from '../models/user';
+import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { User } from '../models/user';
 
-@Service()
+@Injectable({
+  providedIn: 'root',
+})
 export class UserService {
   private readonly http = inject(HttpClient);
   private readonly baseUrl = `http://localhost:3000/users`;
 
-  createUser(user: User): Observable<void> {
-    return this.http.post<void>(this.baseUrl, user);
+  createUser(user: Omit<User, 'id'> | Partial<User>): Observable<User> {
+    return this.http.post<User>(this.baseUrl, user);
   }
 
-  updateUser(user: User): Observable<void> {
-    return this.http.put<void>(`${this.baseUrl}/${user.id}`, user);
+  updateUser(user: User): Observable<User> {
+    return this.http.patch<User>(`${this.baseUrl}/${user.id}`, user);
   }
 
   deleteUserById(id: string): Observable<void> {

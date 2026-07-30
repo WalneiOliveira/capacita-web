@@ -3,9 +3,10 @@ import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/rou
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { AuthService } from '../../services/auth.service';
+import { MatIconModule } from '@angular/material/icon';
 @Component({
   selector: 'app-home',
-  imports: [MatToolbarModule, MatButtonModule, RouterOutlet, RouterLink, RouterLinkActive],
+  imports: [MatToolbarModule, MatButtonModule, RouterOutlet, RouterLink, RouterLinkActive, MatIconModule],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })

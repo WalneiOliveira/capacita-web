@@ -17,6 +17,12 @@
       "nome": "Introdução ao Angular",
       "nivel": "intermediário",
       "horas": 40
+    },
+    {
+      "id": 4,
+      "nome": "Fundamentos de Agular em 1 hora",
+      "nivel": "intermediário",
+      "horas": 1
     }
   ],
   "matriculas": [
@@ -28,15 +34,6 @@
       "horasAssistidas": 12
     },
     {
-      "nome": "walnei",
-      "email": "walnei@exemplo.com",
-      "cursoId": 1,
-      "userId": "dca60b2e-cf9d-429e-97ee-3704200df278",
-      "horasAssistidas": 0,
-      "dataMatricula": "2026-07-27T04:05:22.173Z",
-      "id": 5
-    },
-    {
       "nome": "Escola",
       "email": "teste@escola.df.gov.br",
       "cursoId": 1,
@@ -46,13 +43,40 @@
       "id": 6
     },
     {
-      "nome": "Teste da Silva",
-      "email": "exemplo@exemplo.com",
+      "nome": "João da Silva",
+      "email": "joao@email.com",
       "cursoId": 1,
-      "userId": "77ce5bc2-8f93-4a45-b85a-acbf4061823a",
+      "userId": "4YKf_bs",
       "horasAssistidas": 0,
-      "dataMatricula": "2026-07-27",
+      "dataMatricula": "2026-07-28",
       "id": 7
+    },
+    {
+      "nome": "Walnei",
+      "email": "walnei@exemplo.com",
+      "cursoId": 1,
+      "userId": "KUAd9wE",
+      "horasAssistidas": 0,
+      "dataMatricula": "2026-07-29",
+      "id": 8
+    },
+    {
+      "nome": "Walnei Assis",
+      "email": "walnei@exemplo.com",
+      "cursoId": 1,
+      "userId": "G2Fwmgs",
+      "horasAssistidas": 0,
+      "dataMatricula": "2026-07-30",
+      "id": 9
+    },
+    {
+      "nome": "Maria da Silva",
+      "email": "maria@exemplo.com",
+      "cursoId": 4,
+      "userId": "48397aed-61ae-40d4-a5d7-6e984d9c95c2",
+      "horasAssistidas": 0,
+      "dataMatricula": "2026-07-30",
+      "id": 10
     }
   ],
   "videos": [
@@ -85,46 +109,43 @@
       "cursoId": 3,
       "titulo": "Masterclass Angular 20",
       "youtubeId": "_dh6dpaiTrY"
+    },
+    {
+      "titulo": "Angular Saindo do Zero",
+      "youtubeId": "umdXFJ4n7o",
+      "cursoId": 4,
+      "id": 6
     }
   ],
   "users": [
     {
-      "id": "d57c14c2-622a-40ea-bb81-2d46338f848e",
-      "name": "Bruno Batista",
-      "email": "bruno@acme.com",
-      "password": "$2a$10$3IELqK2TJU004DE47CJzZOxG5C3kvDKRTm4lwZdzoyl.l6oJsU3Sa",
-      "isActive": true,
-      "role": "aluno"
-    },
-    {
-      "email": "walnei@exemplo.com",
-      "password": "$2a$10$vJY075oe33o11JX0gJ9pfeQz/.c69puStdE65LBqSaVK.WAHSz/Y.",
-      "id": "dca60b2e-cf9d-429e-97ee-3704200df278",
-      "name": "walnei",
-      "isActive": true,
-      "role": "aluno"
-    },
-    {
-      "id": "77ce5bc2-8f93-4a45-b85a-acbf4061823a",
-      "name": "Teste da Silva",
-      "email": "exemplo@exemplo.com",
-      "password": "$2b$10$dS2U6wH1.opqnDjydXsuRukiURqxdE7g9tKc8qxdIgp1CFZD7c6e.",
-      "isActive": true,
-      "role": "aluno"
-    },
-    {
-      "id": "50429fce-10ed-447d-8305-856a571c2c52",
-      "name": "novo",
-      "email": "novo@email.com",
-      "password": "$2b$10$sn5uLZWcwE5jkiOp/iRnPuDjJdNwolIuwyocIi/PbACLCpHVsxj/K",
+      "id": "25e7cf6d-6b4c-4c53-8836-fdcd2ac643d4",
+      "name": "Escola",
+      "email": "escola@df.gov.br",
+      "password": "$2b$10$p.HFZOTxwgBwI5/WuslKR.GKqOHRfXtZKklHxe.59k4VXcNEtb7Na",
       "isActive": true,
       "role": "backoffice"
     },
     {
-      "id": "25e7cf6d-6b4c-4c53-8836-fdcd2ac643d4",
-      "name": "Escola",
-      "email": "teste@escola.df.gov.br",
-      "password": "$2b$10$p.HFZOTxwgBwI5/WuslKR.GKqOHRfXtZKklHxe.59k4VXcNEtb7Na",
+      "name": "João da Silva",
+      "email": "joao@email.com",
+      "role": "aluno",
+      "isActive": true,
+      "id": "4YKf_bs"
+    },
+    {
+      "name": "Walnei Assis",
+      "email": "walnei@exemplo.com",
+      "password": "$2b$10$uXI9U.ZBkc2w//nPL46JDu9oi9tlUzjDx7NyTbx81BrYe5ipwnMua",
+      "role": "aluno",
+      "isActive": true,
+      "id": "G2Fwmgs"
+    },
+    {
+      "id": "48397aed-61ae-40d4-a5d7-6e984d9c95c2",
+      "name": "Maria da Silva",
+      "email": "maria@exemplo.com",
+      "password": "$2b$10$oFRghd9fX4N5TjLgBqIYTefqdwRC1WHN4rN5tOrGXC2.G9lz9eCI6",
       "isActive": true,
       "role": "aluno"
     }

@@ -10,20 +10,26 @@
         <!-- Imagem do Curso -->
         <div class="container-imagem">
           <img
-            mat-card-image
             [src]="imagemDoCurso(curso)"
             [alt]="curso.nome"
             class="imagem-curso"
           />
-          @if (estaMatriculado(curso.id)) {
-            <span class="badge-matriculado"> <mat-icon>check_circle</mat-icon> Matriculado </span>
-          }
         </div>
 
+        <!-- Cabeçalho com Título e Badge -->
         <mat-card-header class="cabecalho-card">
-          <mat-card-title class="nome-curso">{{ curso.nome }}</mat-card-title>
+          <mat-card-title class="nome-curso">
+            <span>{{ curso.nome }}</span>
+            @if (estaMatriculado(curso.id)) {
+              <span class="badge-matriculado">
+                <mat-icon>check_circle</mat-icon>
+                <span>Matriculado</span>
+              </span>
+            }
+          </mat-card-title>
         </mat-card-header>
 
+        <!-- Conteúdo com os Chips -->
         <mat-card-content class="conteudo-card">
           <mat-chip-set class="chips-info">
             <mat-chip class="chip-nivel">
@@ -41,6 +47,7 @@
           </mat-chip-set>
         </mat-card-content>
 
+        <!-- Ações do Card -->
         <mat-card-actions class="acoes-card" align="end">
           <a mat-flat-button color="primary" [routerLink]="['/cursos', curso.id]">
             Acessar Curso

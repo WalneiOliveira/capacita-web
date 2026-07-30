@@ -11,6 +11,7 @@ mat-toolbar {
     cursor: pointer;
     display: flex;
     align-items: center;
+    margin-left: 4px;
 
     &:hover {
       opacity: 0.9;
@@ -24,7 +25,7 @@ mat-toolbar {
 
 /* Mantém o estilo original dos links, apenas aumentando a fonte */
 .toolbar-link {
-  font-size: 1.3rem !important; /* Fonte maior conforme solicitado */
+  font-size: 1.3rem !important;
   font-weight: 500;
   color: #ffffff !important;
   text-decoration: none;

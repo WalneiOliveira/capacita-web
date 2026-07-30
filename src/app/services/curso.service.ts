@@ -30,6 +30,14 @@ export class CursoService {
     });
   }
 
+  adicionarVideo(video: Omit<Video, 'id'>): Observable<Video> {
+    return this.http.post<Video>(`${this.apiUrl}/videos`, video);
+  }
+
+  excluirVideo(videoId: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/videos/${videoId}`);
+  }
+
   buscarCursoPorId(id: number): Curso | undefined {
     return this.cursos().find((c) => c.id === id);
   }
@@ -59,7 +67,6 @@ export class CursoService {
   }
 
   matricular(matricula: Matricula): Observable<Matricula> {
-    // Adicionamos a data diretamente mantendo todo o resto do objeto intacto
     const payload = {
       ...matricula,
       dataMatricula: new Date().toISOString().split('T')[0], // salva como "YYYY-MM-DD"
