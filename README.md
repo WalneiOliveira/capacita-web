@@ -123,7 +123,7 @@ capacita-web/
     │   │   └── trocar-senha/           # Formulário para redefinição obrigatória de senha
     │   ├── services/                   # Lógica de integração HTTP e regras de negócio
     │   │   ├── app.config.ts           # Configurações globais de injeção de dependência
-    │   │   ├── auth.service.ts         # Gerenciamento de sessão e tokens
+    │   │   ├── auth.service.ts         # Gerenciamento de sessão e tokens (JWT Bearer Token)
     │   │   ├── curso.service.ts        # Consumo de endpoints de cursos e vídeos
     │   │   ├── matricula.service.ts    # Regras de inscrição e progresso dos alunos
     │   │   └── user.service.ts         # CRUD e administração de contas de usuários
