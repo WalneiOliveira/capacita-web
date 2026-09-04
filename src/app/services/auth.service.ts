@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Service, computed, inject, signal } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { Authentication } from '../models/authentication';
-import { Credentials, DadosRegistro } from '../models/credentials';
+import { Credentials} from '../models/credentials';
 import { User } from '../models/user';
 
 const CHAVE_TOKEN = 'capacita-web-token';
@@ -27,12 +27,6 @@ export class AuthService {
   login(credenciais: Credentials): Observable<Authentication> {
     return this.http
       .post<Authentication>(`${this.apiUrl}/login`, credenciais)
-      .pipe(tap((resposta) => this.salvarSessao(resposta)));
-  }
-
-  registrar(dados: DadosRegistro): Observable<Authentication> {
-    return this.http
-      .post<Authentication>(`${this.apiUrl}/register`, dados)
       .pipe(tap((resposta) => this.salvarSessao(resposta)));
   }
 

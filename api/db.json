@@ -21,13 +21,6 @@
   ],
   "matriculas": [
     {
-      "id": 1,
-      "nome": "Ana Souza",
-      "email": "ana.souza@escola.df.gov.br",
-      "cursoId": 1,
-      "horasAssistidas": 12
-    },
-    {
       "nome": "Escola",
       "email": "teste@escola.df.gov.br",
       "cursoId": 1,
@@ -50,7 +43,7 @@
       "email": "maria@exemplo.com",
       "cursoId": 1,
       "userId": "-zLKTyN",
-      "horasAssistidas": 0,
+      "horasAssistidas": 2,
       "dataMatricula": "2026-07-30",
       "id": 13
     },
@@ -59,7 +52,7 @@
       "email": "maria@exemplo.com",
       "cursoId": 2,
       "userId": "-zLKTyN",
-      "horasAssistidas": 0,
+      "horasAssistidas": 1,
       "dataMatricula": "2026-07-30",
       "id": 14
     },
@@ -68,9 +61,18 @@
       "email": "walnei@admin.com",
       "cursoId": 1,
       "userId": "19sCYJx",
-      "horasAssistidas": 0,
+      "horasAssistidas": 2,
       "dataMatricula": "2026-07-30",
       "id": 15
+    },
+    {
+      "nome": "Fernando Oliveira ",
+      "email": "fernando@gmail.com",
+      "cursoId": 2,
+      "userId": "7Os-ucM",
+      "horasAssistidas": 0,
+      "dataMatricula": "2026-07-30",
+      "id": 16
     }
   ],
   "videos": [
@@ -141,6 +143,15 @@
       "isActive": true,
       "precisaTrocarSenha": false,
       "id": "19sCYJx"
+    },
+    {
+      "name": "Fernando Oliveira ",
+      "email": "fernando@gmail.com",
+      "password": "$2b$10$nqxSnGEzxpBAKSyVPxjbXOYJa9TNbl0RVeeCIkkR6frWof3ExBwBK",
+      "role": "aluno",
+      "isActive": true,
+      "precisaTrocarSenha": true,
+      "id": "7Os-ucM"
     }
   ]
 }

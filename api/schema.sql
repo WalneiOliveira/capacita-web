@@ -1,0 +1,25 @@
+CREATE TABLE IF NOT EXISTS users ( 
+  id TEXT PRIMARY KEY, 
+  name TEXT NOT NULL, 
+  email TEXT NOT NULL UNIQUE, 
+  password TEXT NOT NULL, 
+  role TEXT NOT NULL CHECK (role IN ('aluno', 'backoffice')), 
+  isActive INTEGER NOT NULL DEFAULT 1, precisaTrocarSenha INTEGER NOT NULL DEFAULT 0 ); 
+  
+CREATE TABLE IF NOT EXISTS cursos ( 
+  id INTEGER PRIMARY KEY AUTOINCREMENT, 
+  nome TEXT NOT NULL, 
+  nivel TEXT NOT NULL CHECK (nivel IN ('básico', 'intermediário')), 
+  horas INTEGER NOT NULL ); 
+  
+CREATE TABLE IF NOT EXISTS videos ( 
+  id INTEGER PRIMARY KEY AUTOINCREMENT, 
+  cursoId INTEGER NOT NULL REFERENCES cursos(id) ON DELETE CASCADE, 
+  titulo TEXT NOT NULL, youtubeId TEXT NOT NULL ); 
+  
+CREATE TABLE IF NOT EXISTS matriculas ( 
+  id INTEGER PRIMARY KEY AUTOINCREMENT, 
+  userId TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE, 
+  cursoId INTEGER NOT NULL REFERENCES cursos(id) ON DELETE CASCADE, 
+  horasAssistidas REAL NOT NULL DEFAULT 0, dataMatricula TEXT NOT NULL, 
+  UNIQUE (userId, cursoId) );
