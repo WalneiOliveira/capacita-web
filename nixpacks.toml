@@ -1,11 +1,9 @@
- [phases.setup]
-nixPkgs = ["nodejs_22", "python3", "gcc", "gnumake"]
+[phases.setup]
+nixpkgsArchive = '51ad838b03a05b1de6f9f2a0fffecee64a9788ee'
+nixPkgs = ["python3", "gcc", "gnumake"]
 
 [phases.install]
 cmds = ["npm ci"]
-
-[phases.build]
-cmds = ["npm run build"]
 
 [start]
 cmd = "node api/server.cjs"
