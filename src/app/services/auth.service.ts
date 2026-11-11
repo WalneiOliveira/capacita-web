@@ -4,6 +4,7 @@ import { Observable, tap } from 'rxjs';
 import { Authentication } from '../models/authentication';
 import { Credentials} from '../models/credentials';
 import { User } from '../models/user';
+import { API_URL } from '../api-url';
 
 const CHAVE_TOKEN = 'capacita-web-token';
 const CHAVE_USUARIO = 'capacita-web-usuario';
@@ -11,7 +12,7 @@ const CHAVE_USUARIO = 'capacita-web-usuario';
 @Service()
 export class AuthService {
   private readonly http = inject(HttpClient);
-  private readonly apiUrl = 'http://localhost:3000';
+  private readonly apiUrl = API_URL;
 
   private tokenSignal = signal<string | null>(sessionStorage.getItem(CHAVE_TOKEN));
   private usuarioSignal = signal<User | null>(

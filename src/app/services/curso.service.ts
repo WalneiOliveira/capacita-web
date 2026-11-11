@@ -4,11 +4,12 @@ import { Observable, tap } from 'rxjs';
 import { Curso } from '../models/curso.model';
 import { Matricula } from '../models/matricula.model';
 import { Video } from '../models/video.model';
+import { API_URL } from '../api-url';
 
 @Service()
 export class CursoService {
   private readonly http = inject(HttpClient);
-  private readonly apiUrl = 'http://localhost:3000';
+  private readonly apiUrl = API_URL;
   readonly cursos = signal<Curso[]>([]);
   readonly matriculas = signal<Matricula[]>([]);
 
