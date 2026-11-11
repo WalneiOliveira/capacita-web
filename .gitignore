@@ -44,4 +44,8 @@ __screenshots__/
 Thumbs.db
 
 # env
+.envapi/capacita.db-shm
+api/capacita.db-wal
+api/capacita.db
 .env
+node_modules/
