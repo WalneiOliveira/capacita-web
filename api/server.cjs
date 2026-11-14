@@ -390,6 +390,36 @@ app.post('/cursos', exigirBackoffice, (req, res) => {
   res.status(201).json({ id: Number(result.lastInsertRowid), nome, nivel, horas: Number(horas) });
 });
 
+// Atualizar curso (PUT = completo, PATCH = parcial)
+const atualizarCursoHandler = (req, res) => {
+  const id = Number(req.params.id);
+  const atual = db.prepare('SELECT * FROM cursos WHERE id = ?').get(id);
+
+  if (!atual) {
+    return res.status(404).json({ error: 'Curso nao encontrado.' });
+  }
+
+  const nome = req.body.nome !== undefined ? String(req.body.nome).trim() : atual.nome;
+  const nivel = req.body.nivel !== undefined ? req.body.nivel : atual.nivel;
+  const horas = req.body.horas !== undefined ? Number(req.body.horas) : atual.horas;
+
+  if (!nome || Number.isNaN(horas)) {
+    return res.status(400).json({ error: 'Informe um nome valido e a carga horaria em numero.' });
+  }
+
+  db.prepare('UPDATE cursos SET nome = ?, nivel = ?, horas = ? WHERE id = ?').run(
+    nome,
+    nivel,
+    horas,
+    id,
+  );
+
+  res.json(db.prepare('SELECT * FROM cursos WHERE id = ?').get(id));
+};
+
+app.put('/cursos/:id', exigirBackoffice, atualizarCursoHandler);
+app.patch('/cursos/:id', exigirBackoffice, atualizarCursoHandler);
+
 app.delete('/cursos/:id', exigirBackoffice, (req, res) => {
   db.prepare('DELETE FROM cursos WHERE id = ?').run(req.params.id);
   res.status(204).send();
