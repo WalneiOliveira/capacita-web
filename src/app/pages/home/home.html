@@ -4,12 +4,22 @@
     <a class="logo" routerLink="/hero">{{ title() }}</a>
     <span class="spacer"></span>
 
-    <a mat-button class="toolbar-link" routerLink="/cursos" routerLinkActive="active">Cursos</a>
-    <a mat-button class="toolbar-link" routerLink="/meus-cursos" routerLinkActive="active"
-      >Meus Cursos</a
-    >
-
-    <button mat-button class="toolbar-link" (click)="sair()">Sair</button>
+    @if (isMobile()) {
+      <button mat-icon-button class="menu-button" [matMenuTriggerFor]="menu" aria-label="Abrir menu">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <a mat-menu-item routerLink="/cursos">Cursos</a>
+        <a mat-menu-item routerLink="/meus-cursos">Meus Cursos</a>
+        <button mat-menu-item (click)="sair()">Sair</button>
+      </mat-menu>
+    } @else {
+      <a mat-button class="toolbar-link" routerLink="/cursos" routerLinkActive="active">Cursos</a>
+      <a mat-button class="toolbar-link" routerLink="/meus-cursos" routerLinkActive="active"
+        >Meus Cursos</a
+      >
+      <button mat-button class="toolbar-link" (click)="sair()">Sair</button>
+    }
   </mat-toolbar>
 </div>
 

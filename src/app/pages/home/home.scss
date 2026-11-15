@@ -41,3 +41,17 @@ mat-toolbar {
     border-bottom: 2px solid #ffffff;
   }
 }
+
+.menu-button {
+  color: #ffffff !important;
+}
+
+@media (max-width: 599.98px) {
+  mat-toolbar {
+    padding: 0 8px;
+
+    .logo {
+      font-size: 1.25rem;
+    }
+  }
+}

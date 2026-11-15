@@ -1,13 +1,25 @@
 form {
-  width: 30rem;
+  width: 100%;
+  max-width: 30rem;
   height: 70vh;
   margin: auto;
-  display: flex; 
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-content: center;
+  padding: 0 1.5rem;
+  box-sizing: border-box;
 }
 
 h3 {
   text-align: center;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+mat-form-field {
+  width: 100%;
+}
+button[mat-flat-button] {
+  width: 100%;
+  padding: 1.5rem 0;
 }
