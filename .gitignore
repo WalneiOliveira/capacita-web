@@ -49,3 +49,9 @@ api/capacita.db-wal
 api/capacita.db
 .env
 node_modules/
+
+api/capacita.db-shm
+api/db.json
+
+api/capacita.db-shm
+api/db.json

@@ -8,6 +8,7 @@ export interface VideoDialogData {
   titulo: string;
   youtubeId: string;
   preview?: boolean;
+  concluida?: boolean;
 }
 
 @Component({
@@ -23,6 +24,10 @@ export class VideoDialog {
 
   get preview(): boolean {
     return !!this.data.preview;
+  }
+
+  get concluida(): boolean {
+    return !!this.data.concluida;
   }
 
   get videoUrl(): SafeResourceUrl {

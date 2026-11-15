@@ -5,7 +5,7 @@
 
   @if (curso(); as c) {
     <header class="header-curso">
-      <h1>{{ c.nome }}</h1>
+      <h2>{{ c.nome }}</h2>
       <p class="meta-info">Nível {{ c.nivel }} · {{ c.horas }}h de conteúdo</p>
 
       @if (jaMatriculado()) {
@@ -13,6 +13,10 @@
           <mat-icon>check_circle</mat-icon>
           <span>Você já está matriculado neste curso</span>
         </div>
+        <p class="meta-info">
+          {{ aulasConcluidas().length }} de {{ videos().length }} aulas concluídas ·
+          {{ horasAssistidas() }}h de {{ c.horas }}h
+        </p>
       } @else {
         <button
           mat-flat-button
@@ -43,7 +47,9 @@
               class="item-aula"
               [class.preview]="!jaMatriculado()"
             >
-              <mat-icon matListItemIcon color="primary"> play_circle_filled </mat-icon>
+              <mat-icon matListItemIcon color="primary">
+                {{ aulaConcluida(aula.id) ? 'check_circle' : 'play_circle_filled' }}
+              </mat-icon>
               <span matListItemTitle>{{ index + 1 }}. {{ aula.titulo }}</span>
             </button>
           }

@@ -45,6 +45,19 @@ export class CursoDetalhe implements OnInit {
     return this.cursoService.matriculas().some((m) => m.cursoId === c.id);
   });
 
+  private matriculaAtual = computed(() => {
+    const c = this.curso();
+    if (!c) return undefined;
+    return this.cursoService.matriculas().find((m) => m.cursoId === c.id);
+  });
+
+  protected aulasConcluidas = computed(() => this.matriculaAtual()?.aulasConcluidas ?? []);
+  protected horasAssistidas = computed(() => this.matriculaAtual()?.horasAssistidas ?? 0);
+
+  protected aulaConcluida(aulaId: number): boolean {
+    return this.aulasConcluidas().includes(aulaId);
+  }
+
   ngOnInit(): void {
     const cursoId = Number(this.route.snapshot.paramMap.get('id'));
     const cursos$ =
@@ -84,14 +97,23 @@ export class CursoDetalhe implements OnInit {
   protected assistirAula(aula: Video): void {
     const entrou = this.jaMatriculado();
 
-    this.dialog.open(VideoDialog, {
+    const dialogRef = this.dialog.open(VideoDialog, {
       data: {
         titulo: aula.titulo,
         youtubeId: aula.youtubeId,
         preview: !entrou,
+        concluida: this.aulaConcluida(aula.id),
       },
       width: '800px',
       maxWidth: '95vw',
+    });
+
+    // Ao fechar com "Marcar aula como concluída", grava o progresso na matrícula
+    dialogRef.afterClosed().subscribe((concluiu) => {
+      const matricula = this.matriculaAtual();
+      if (concluiu === true && entrou && matricula?.id) {
+        this.cursoService.concluirAula(matricula.id, aula.id).subscribe();
+      }
     });
   }
 }

@@ -21,5 +21,6 @@ CREATE TABLE IF NOT EXISTS matriculas (
   id INTEGER PRIMARY KEY AUTOINCREMENT, 
   userId TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE, 
   cursoId INTEGER NOT NULL REFERENCES cursos(id) ON DELETE CASCADE, 
-  horasAssistidas REAL NOT NULL DEFAULT 0, dataMatricula TEXT NOT NULL, 
+  horasAssistidas REAL NOT NULL DEFAULT 0, dataMatricula TEXT NOT NULL,
+  aulasConcluidas TEXT NOT NULL DEFAULT '[]', 
   UNIQUE (userId, cursoId) );

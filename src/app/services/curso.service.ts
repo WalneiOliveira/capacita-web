@@ -78,12 +78,9 @@ export class CursoService {
       .pipe(tap((criada) => this.matriculas.update((atual) => [...atual, criada])));
   }
 
-  atualizarProgresso(matriculaId: number, horasAdicionais: number): Observable<Matricula> {
-    const atual = this.matriculas().find((m) => m.id === matriculaId);
-    const novoTotal = Math.max(0, (atual?.horasAssistidas ?? 0) + horasAdicionais);
-
+  concluirAula(matriculaId: number, videoId: number): Observable<Matricula> {
     return this.http
-      .patch<Matricula>(`${this.apiUrl}/matriculas/${matriculaId}`, { horasAssistidas: novoTotal })
+      .post<Matricula>(`${this.apiUrl}/matriculas/${matriculaId}/aulas/${videoId}/concluir`, {})
       .pipe(
         tap((atualizada) => {
           this.matriculas.update((lista) =>

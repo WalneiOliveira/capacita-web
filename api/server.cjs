@@ -453,13 +453,25 @@ app.delete('/videos/:id', exigirBackoffice, (req, res) => {
 });
 
 // Matrículas
+// Converte a coluna aulasConcluidas (texto JSON) em lista de números
+function formatarMatricula(m) {
+  if (!m) return m;
+  let aulas = [];
+  try {
+    aulas = JSON.parse(m.aulasConcluidas || '[]');
+  } catch {
+    aulas = [];
+  }
+  return { ...m, aulasConcluidas: aulas };
+}
+
 // GET /matriculas (Retorna apenas as matrículas do usuário logado)
 app.get('/matriculas', exigirLogin, (req, res) => {
   const usuarioId = req.usuarioId; // ID extraído do Token JWT pelo middleware exigirLogin
 
   // Busca no SQLite apenas as matrículas pertencentes a este aluno
   const stmt = db.prepare('SELECT * FROM matriculas WHERE userId = ?');
-  const minhasMatriculas = stmt.all(usuarioId);
+  const minhasMatriculas = stmt.all(usuarioId).map(formatarMatricula);
 
   res.json(minhasMatriculas);
 });
@@ -479,6 +491,7 @@ app.post('/matriculas', exigirLogin, (req, res) => {
     cursoId: Number(cursoId),
     horasAssistidas: horasAssistidas || 0,
     dataMatricula: dataHoje,
+    aulasConcluidas: [],
   });
 });
 
@@ -489,7 +502,56 @@ app.put('/matriculas/:id', exigirLogin, (req, res) => {
     req.params.id,
   );
   const matricula = db.prepare('SELECT * FROM matriculas WHERE id = ?').get(req.params.id);
-  res.json(matricula);
+  res.json(formatarMatricula(matricula));
+});
+
+// Marca uma aula como concluída e recalcula as horas assistidas da matrícula.
+// As horas do curso são distribuídas proporcionalmente entre as aulas cadastradas.
+app.post('/matriculas/:id/aulas/:videoId/concluir', exigirLogin, (req, res) => {
+  const matriculaId = Number(req.params.id);
+  const videoId = Number(req.params.videoId);
+
+  const matricula = db.prepare('SELECT * FROM matriculas WHERE id = ?').get(matriculaId);
+  if (!matricula) {
+    return res.status(404).json({ error: 'Matricula nao encontrada.' });
+  }
+
+  // Cada aluno só altera o progresso da própria matrícula
+  if (String(matricula.userId) !== String(req.usuarioId)) {
+    return res.status(403).json({ error: 'Esta matricula pertence a outro usuario.' });
+  }
+
+  const aulasDoCurso = db
+    .prepare('SELECT id FROM videos WHERE cursoId = ?')
+    .all(matricula.cursoId)
+    .map((v) => v.id);
+
+  if (!aulasDoCurso.includes(videoId)) {
+    return res.status(404).json({ error: 'Aula nao pertence a este curso.' });
+  }
+
+  const curso = db.prepare('SELECT horas FROM cursos WHERE id = ?').get(matricula.cursoId);
+
+  let concluidas = [];
+  try {
+    concluidas = JSON.parse(matricula.aulasConcluidas || '[]');
+  } catch {
+    concluidas = [];
+  }
+  if (!concluidas.includes(videoId)) concluidas.push(videoId);
+
+  // Considera só aulas que ainda existem no curso
+  const validas = concluidas.filter((id) => aulasDoCurso.includes(id));
+  const horas = Math.round((validas.length / aulasDoCurso.length) * curso.horas * 100) / 100;
+
+  db.prepare('UPDATE matriculas SET aulasConcluidas = ?, horasAssistidas = ? WHERE id = ?').run(
+    JSON.stringify(validas),
+    horas,
+    matriculaId,
+  );
+
+  const atualizada = db.prepare('SELECT * FROM matriculas WHERE id = ?').get(matriculaId);
+  res.json(formatarMatricula(atualizada));
 });
 
 app.delete('/matriculas/:id', exigirLogin, (req, res) => {

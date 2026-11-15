@@ -35,3 +35,16 @@
     </p>
   }
 </mat-dialog-content>
+
+@if (!preview) {
+  <mat-dialog-actions align="end">
+    @if (concluida) {
+      <span class="aula-concluida"><mat-icon>check_circle</mat-icon> Aula concluída</span>
+    } @else {
+      <button mat-flat-button color="primary" [mat-dialog-close]="true">
+        <mat-icon>done</mat-icon>
+        Marcar aula como concluída
+      </button>
+    }
+  </mat-dialog-actions>
+}

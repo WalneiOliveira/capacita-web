@@ -17,4 +17,11 @@ db.pragma('journal_mode = WAL');
 db.pragma('foreign_keys = ON');
 const schema = fs.readFileSync(SCHEMA_PATH, 'utf-8');
 db.exec(schema);
+
+// Migração: bancos criados antes desta versão não têm a coluna aulasConcluidas
+const colunasMatriculas = db.prepare('PRAGMA table_info(matriculas)').all().map((c) => c.name);
+if (!colunasMatriculas.includes('aulasConcluidas')) {
+  db.exec("ALTER TABLE matriculas ADD COLUMN aulasConcluidas TEXT NOT NULL DEFAULT '[]'");
+}
+
 module.exports = db;
